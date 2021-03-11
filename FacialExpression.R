@@ -414,6 +414,31 @@ grabVideoStills = function(inputVideo, sampleWindow, stillPath) {
 }
 
 
+# function for creating a new face collections.
+createCollection = function() {
+  require(paws)
+  require(magick)
+  
+  svc <- rekognition()
+  svc$create_collection(CollectionId = "faceCollection")
+  
+  path = "/Users/rentaluser/Desktop/thesisVideo/FaceCollection/pilotTeam"
+  # Finding the accruacy 
+  file.names = dir(path, full.names=F)
+  
+  # Loop through the files in the specified folder, add and index them in the collection
+  for(f in file.names) {
+    imgFile = paste(path,f,sep="/")
+    # This gets the name of the kid, which is embedded in the filename and separated from the number with an underscore
+    imgName = unlist(strsplit(f,split="_"))[[1]]
+    # Add the photos and the name to the collection that I created
+    svc$index_faces(CollectionId="faceCollection", Image=list(Bytes=imgFile), ExternalImageId=imgName, DetectionAttributes=list())
+  } 
+  
+  
+}
+
+
 videoFaceAnalysis = function(inputVideo, recordingStartDateTime, sampleWindow, facesCollectionID=NA) {
   require(paws)
   require(magick)

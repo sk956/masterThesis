@@ -36,11 +36,9 @@ svc <- rekognition()
 
 # Get information about a group photo
 
-
-
-allImages = function (folderPath) {
-  #path = "/Users/rentaluser/Desktop/thesisVideo/videoFaceAnalysis_temp_testing" 
-  path  = folderPath
+allImages = function () {
+  path = "/Users/rentaluser/Desktop/thesisVideo/videoFaceAnalysis_temp_testing" 
+  #path  = folderPath
   
   # How to get all the images in this path 
   img_files = list.files(path=path, full.names=T)
@@ -48,10 +46,10 @@ allImages = function (folderPath) {
   
   # check wheter this works and check whether it accurately captures the people? 
   # if this 
-  for(i in 1:length(img_files)) {
-    print(paste(img_files[i]))
-    
-    createImages(img_files[i])
+  for(img in img_files) {
+    print(paste(img))
+    print("HELLO THRE")
+    createImages(img)
     
   }
 
@@ -79,8 +77,15 @@ createImages = function(photoPath) {
 # Duplicate the original image to have something to annotate and output
   new.img = img
 
-  for(face in all_faces) {
-
+  for(i in 1:length(all_faces)) {
+    #print(paste(i))
+    #print("faces id")
+    #(paste(all_faces[i]))
+   face = all_faces[[i]]
+  #for (face in all_faces){
+ # face  = all_faces
+   # print(paste(face))
+  
 # Prepare a label that collapses across the emotions data provided by rekognition. Give the type of
 # emotion and the confidence that AWS has in its expression.
   emo.label = ""
@@ -113,7 +118,12 @@ createImages = function(photoPath) {
   faceName = o$FaceMatches[[1]]$Face$ExternalImageId
   faceConfidence = round(o$FaceMatches[[1]]$Face$Confidence,3)
   print(paste("Detected: ",faceName, sep=""))
-# Annotate with the name of the person
+  faceId = i
+
+  # annotate with the face id 
+  text(x=x1+(box$Width*image_width)/2, y=y1+ 30,i, adj=0.5, cex=2, col="blue")
+  
+  # annotate with the name of the person
   text(x=x1+(box$Width*image_width)/2, y=y1,faceName, adj=0.5, cex=3, col="green")
 }
 

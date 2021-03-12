@@ -483,7 +483,6 @@ videoFaceAnalysis = function(inputVideo, recordingStartDateTime, sampleWindow, f
     # Get the details of any faces detected in this frame
     faces = df.o[[i]]$FaceDetails
     
-    print(paste("faces", length(faces))
     
     # If there are no faces in the image, then create a blank results record, with just the image id
     if(length(faces) == 0) {
@@ -561,18 +560,11 @@ videoFaceAnalysis = function(inputVideo, recordingStartDateTime, sampleWindow, f
             if(length(faceRec$FaceMatches) > 0) {
               res.line[face.num, 22] = faceRec$FaceMatches[[1]]$Face$ExternalImageId
               faceName = faceRec$FaceMatches[[1]]$Face$ExternalImageId
-              print(paste("Detected:" , faceName ))
-              # anotate with the name of the person
-             # text(x=x1+(box$Width*image_width)/2, y=y1,faceName, adj=0.5, cex=3, col="green")
-              
+     
               res.line[face.num, 23] = faceRec$FaceMatches[[1]]$Face$Confidence
             } else {
               res.line[face.num, 22] = "IDENTITY NOT RECOGNIZED"							
             }	
-            
-           # rect(x1,y1,x2,y2, border="red", lty="dashed", lwd=5)  
-           # image_write(new.img, path="~/Desktop/annotated_image.png", format="png")
- 
             
           }
         } else {

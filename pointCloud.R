@@ -7,6 +7,8 @@ tableP1 = read.csv("/Users/rentaluser/Desktop/masterThesis/emotionCSV/processed/
 tableP2 = read.csv("/Users/rentaluser/Desktop/masterThesis/emotionCSV/processed/testing/p2.csv")
 tableP3  = read.csv("/Users/rentaluser/Desktop/masterThesis/emotionCSV/processed/testing/p3.csv")
 
+
+# look at the videos that go bad 
 ggplot() + 
   geom_line(data = tableP1, aes(x = min_timestamp, y = emotions ), color = 'red') + 
   geom_line(data = tableP2, aes(x = min_timestamp, y = emotions ), color = 'blue') +

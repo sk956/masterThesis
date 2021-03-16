@@ -37,7 +37,7 @@ svc <- rekognition()
 # Get information about a group photo
 
 allImages = function () {
-  path = "/Users/rentaluser/Desktop/thesisVideo/videoFaceAnalysis_temp_testing" 
+  path = "/Users/rentaluser/desktop/thesisVideo/videos/FullVideo/videoFaceAnalysis_temp_pilotTeam1VeroRound2" 
   #path  = folderPath
   
   # How to get all the images in this path 
@@ -129,9 +129,10 @@ createImages = function(photoPath) {
 
 # Draw a rectangle around the face
   rect(x1,y1,x2,y2, border="red", lty="dashed", lwd=5)   
-
+  
+  print(x1)
 # Annotate the photo with the emotions information
-  text(x=x1+(box$Width*image_width)/2, y=y1+50,emo.label, pos=1, cex=1.5, col="red")     
+  text(x=x1+ 0.8 +(box$Width*image_width)/2, y=y1+50,emo.label, pos=1, cex=1, col="red")     
 
   dev.off()
 }
@@ -139,11 +140,13 @@ createImages = function(photoPath) {
 # Write the image out to file
   # The path for the new Image 
   
-  annotated = "/Users/rentaluser/Desktop/thesisVideo/annotatedImages/" 
+  annotated = "/Users/rentaluser/desktop/thesisVideo/videos/annotatedImages/pilot/team1_r2_full/" 
   
-  photoNum = strsplit(photoPath, "/")[[1]][7]
-  
+  photoNum = strsplit(photoPath, "/")[[1]][9]
+
   newPath = paste(annotated, photoNum)
+  
+  print(newPath)
   
   image_write(new.img, path= newPath, format="png")
 }

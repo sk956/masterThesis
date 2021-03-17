@@ -17,7 +17,10 @@ line <- ggplot() +
   xlab('minute') + 
   ylab('emotion')
 
-line + stat_smooth(method  = "lm", formula = y~x)
+line + annotate(geom="text", x=20, y= 1000, label="P1-Blue/ P2-Red/ P3-Black",
+               color="Black")
+
+
 
 # create a regression line by usingthe points for each color 
 

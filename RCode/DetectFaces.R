@@ -37,7 +37,7 @@ svc <- rekognition()
 # Get information about a group photo
 
 allImages = function () {
-  path = "/Users/rentaluser/desktop/thesisVideo/videos/FullVideo/videoFaceAnalysis_temp_pilotTeam1VeroRound2" 
+  path = "/Users/rentaluser/desktop/thesisVideo/videos/FullVideo/videoFaceAnalysis_temp_pilotTeam1VeroRound3" 
   #path  = folderPath
   
   # How to get all the images in this path 
@@ -140,7 +140,7 @@ createImages = function(photoPath) {
 # Write the image out to file
   # The path for the new Image 
   
-  annotated = "/Users/rentaluser/desktop/thesisVideo/videos/annotatedImages/pilot/team1_r2_full/" 
+  annotated = "/Users/rentaluser/desktop/thesisVideo/videos/annotatedImages/pilot/team1_r3_full/" 
   
   photoNum = strsplit(photoPath, "/")[[1]][9]
 

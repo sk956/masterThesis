@@ -37,15 +37,14 @@ svc <- rekognition()
 # Get information about a group photo
 
 allImages = function () {
-  path = "/Users/rentaluser/desktop/thesisVideo/videos/FullVideo/videoFaceAnalysis_temp_pilotTeam1VeroRound3" 
-  #path  = folderPath
+
+  # CHANGE PATH ONLY!
+  path = "/Users/coolseyun/desktop/thesisvideo/videos/fullvideo/videoFaceAnalysis_temp_03_06_2021AM_vero_7_team_round_3"
+
   
   # How to get all the images in this path 
   img_files = list.files(path=path, full.names=T)
   
-  
-  # check wheter this works and check whether it accurately captures the people? 
-  # if this 
   for(img in img_files) {
     print(paste(img))
     print("HELLO THRE")
@@ -137,10 +136,8 @@ createImages = function(photoPath) {
   dev.off()
 }
 
-# Write the image out to file
-  # The path for the new Image 
-  
-  annotated = "/Users/rentaluser/desktop/thesisVideo/videos/annotatedImages/pilot/team1_r3_full/" 
+  # CHANGE ANNOTATED PATH
+  annotated = "/Users/coolseyun/desktop/thesisvideo/videos/annotatedImages/3.6team7/" 
   
   photoNum = strsplit(photoPath, "/")[[1]][9]
 

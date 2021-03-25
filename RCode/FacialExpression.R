@@ -420,9 +420,17 @@ createCollection = function() {
   require(magick)
   
   svc <- rekognition()
+  
+  #Delete a collection if necessary
+  # delete the collection 
+  svc$delete_collection(
+    CollectionId = "faceCollection"
+  )
+  
+  # DO NOT CHANGE COLLECTION NAME
   svc$create_collection(CollectionId = "faceCollection")
   
-  path = "/Users/rentaluser/Desktop/thesisVideo/FaceCollection/pilotTeam"
+  path = "/Users/coolseyun/desktop/thesisvideo/FaceCollection/3.9Team/team4"
   # Finding the accruacy 
   file.names = dir(path, full.names=F)
   
@@ -431,15 +439,21 @@ createCollection = function() {
     imgFile = paste(path,f,sep="/")
     # This gets the name of the kid, which is embedded in the filename and separated from the number with an underscore
     imgName = unlist(strsplit(f,split="_"))[[1]]
-    # Add the photos and the name to the collection that I created
+    #CHANGE NAME
+    print(imgName)
     svc$index_faces(CollectionId="faceCollection", Image=list(Bytes=imgFile), ExternalImageId=imgName, DetectionAttributes=list())
   } 
   
-  
 }
 
+# calling the video faceAnalysis 
 
-videoFaceAnalysis = function(inputVideo, recordingStartDateTime, sampleWindow, facesCollectionID=NA) {
+#vid.out = videoFaceAnalysis(inputVideo="/Users/coolseyun/desktop/thesisvideo/videos/fullVideo/pilotTeam2VeroRound1.mp4",recordingStartDateTime="2020-04-01 17:56:34", sampleWindow=15)
+
+# save to csv file 
+#write.csv(vid.out, "/Users/coolseyun/desktop/masterThesis/emotionCSV/rawcsv/pilotTeam2round1.csv")
+
+videoFaceAnalysis = function(inputVideo, recordingStartDateTime, sampleWindow, facesCollectionID= 'faceCollection') {
   require(paws)
   require(magick)
   
@@ -472,7 +486,7 @@ videoFaceAnalysis = function(inputVideo, recordingStartDateTime, sampleWindow, f
     
     # This is stupid, but it is necessary to adjust the timestamping
     if(i >= 3) {
-      img_timestamp = 17 + (i-3)*20
+      img_timestamp = 17 + (i-3)*sampleWindow
     } else {
       img_timestamp = 0
     }		
